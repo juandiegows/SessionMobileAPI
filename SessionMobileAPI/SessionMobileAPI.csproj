@@ -173,6 +173,7 @@
     <Compile Include="Models\Funcao.cs">
       <DependentUpon>ModelDBSessionMobile.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Request\LoginRequest.cs" />
     <Compile Include="Models\ModelDBSessionMobile.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

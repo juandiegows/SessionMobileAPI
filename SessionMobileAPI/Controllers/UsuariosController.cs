@@ -19,7 +19,7 @@ namespace SessionMobileAPI.Controllers
         // GET: api/Usuarios
         public IQueryable<VUsuario> GetUsuario()
         {
-           
+
             return db.VUsuario;
         }
 
@@ -27,7 +27,7 @@ namespace SessionMobileAPI.Controllers
         [ResponseType(typeof(VUsuario))]
         public IHttpActionResult GetUsuario(int id)
         {
-            VUsuario usuario = db.VUsuario.First(x=>x.id == id);
+            VUsuario usuario = db.VUsuario.First(x => x.id == id);
             if (usuario == null)
             {
                 return NotFound();
@@ -35,7 +35,15 @@ namespace SessionMobileAPI.Controllers
 
             return Ok(usuario);
         }
-
+        [Route("api/Auth")]
+        public bool Login([FromBody] LoginRequest login)
+        {
+            if (login == null)
+                return false;
+            return db.Usuario
+                .Where(x => x.email.ToLower() == login.User.ToLower() && x.senha == login.Password)
+                .Count() >= 1;
+        }
         // PUT: api/Usuarios/5
         [ResponseType(typeof(void))]
         public IHttpActionResult PutUsuario(int id, Usuario usuario)
